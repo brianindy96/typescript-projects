@@ -55,9 +55,9 @@ var Direction2;
     Direction2["SouthWest"] = "sw";
     Direction2["West"] = "w";
 })(Direction2 || (Direction2 = {}));
-console.log(Direction1.East); // 8
-console.log(Direction1.North); // 0
-console.log(Direction1.NorthEast); // 1
-console.log(Direction1.SouthEast); // 9
-console.log(Direction2.North); // 0
-console.log(Direction2.East); // east
+const user = {
+    id: 1,
+    name: 'Brian',
+    reverse: true,
+};
+// Type Assertion

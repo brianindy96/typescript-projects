@@ -70,3 +70,19 @@ enum Direction2{
 
 // console.log(Direction2.North);  // 0
 // console.log(Direction2.East);   // east
+
+//Objects
+
+type User = {
+    id: number,
+    name: string,
+    reverse: boolean,
+}
+
+const user: User = {
+    id: 1,
+    name: 'Brian',
+    reverse: true,
+}
+
+// Type Assertion
