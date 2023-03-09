@@ -90,3 +90,23 @@ let cid: any = 1
 
 // let customerId = <number>cid;
 // let customerId = cid as number;
+
+// Function
+
+function addNum(x: number , y: number ) :number{
+    return x + y;
+}
+
+// console.log(addNum(1, '2')); // Error
+console.log(addNum(1,2)); // 3
+
+// Void
+//void is used where there is no data. For example, if a function does not return any value then you can specify void as return type.
+
+function log(message: string | number): void {
+    console.log(message);
+}
+
+// log(true); // Error
+// log("Hello"); // Hello
+// log(2); // 2
