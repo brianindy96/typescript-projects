@@ -23,4 +23,41 @@ employee = [
     [2, 'John'],
     [3, 'Sara'],
 ];
-// Union
+// UNION
+// pid could either be a string or a number
+let pid = 22;
+// pid = '22'; // no error
+// pid=43; // no error
+// pid=true; // Error
+//ENUM
+//An enum is a special "class" that represents a group of constants (unchangeable variables).
+//Enums come in two flavors string and numeric.
+//By default, enums will initialize the first value to 0 and add 1 to each additional value:
+var Direction1;
+(function (Direction1) {
+    Direction1[Direction1["North"] = 0] = "North";
+    Direction1[Direction1["NorthEast"] = 1] = "NorthEast";
+    Direction1[Direction1["East"] = 8] = "East";
+    Direction1[Direction1["SouthEast"] = 9] = "SouthEast";
+    Direction1[Direction1["South"] = 10] = "South";
+    Direction1[Direction1["NorthWest"] = 11] = "NorthWest";
+    Direction1[Direction1["SouthWest"] = 12] = "SouthWest";
+    Direction1[Direction1["West"] = 13] = "West";
+})(Direction1 || (Direction1 = {}));
+var Direction2;
+(function (Direction2) {
+    Direction2[Direction2["North"] = 0] = "North";
+    Direction2[Direction2["NorthEast"] = 1] = "NorthEast";
+    Direction2["East"] = "east";
+    Direction2["SouthEast"] = "se";
+    Direction2["South"] = "s";
+    Direction2["NorthWest"] = "nw";
+    Direction2["SouthWest"] = "sw";
+    Direction2["West"] = "w";
+})(Direction2 || (Direction2 = {}));
+console.log(Direction1.East); // 8
+console.log(Direction1.North); // 0
+console.log(Direction1.NorthEast); // 1
+console.log(Direction1.SouthEast); // 9
+console.log(Direction2.North); // 0
+console.log(Direction2.East); // east

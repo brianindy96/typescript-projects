@@ -28,4 +28,45 @@ employee = [
     [3, 'Sara'],
 ]
 
-// Union
+// UNION
+// pid could either be a string or a number
+let pid: string | number = 22;
+// pid = '22'; // no error
+// pid=43; // no error
+// pid=true; // Error
+
+//ENUM
+//An enum is a special "class" that represents a group of constants (unchangeable variables).
+//Enums come in two flavors string and numeric.
+
+//By default, enums will initialize the first value to 0 and add 1 to each additional value:
+
+enum Direction1{
+    North,
+    NorthEast,
+    East =8,
+    SouthEast,
+    South,
+    NorthWest,
+    SouthWest,
+    West,
+}
+
+enum Direction2{
+    North,
+    NorthEast,
+    East = 'east',
+    SouthEast = 'se',
+    South = 's',
+    NorthWest = 'nw',
+    SouthWest = 'sw',
+    West = 'w',
+}
+
+// console.log(Direction1.East); // 8
+// console.log(Direction1.North); // 0
+// console.log(Direction1.NorthEast); // 1
+// console.log(Direction1.SouthEast); // 9
+
+// console.log(Direction2.North);  // 0
+// console.log(Direction2.East);   // east
