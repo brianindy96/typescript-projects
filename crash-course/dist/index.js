@@ -80,3 +80,13 @@ const user1 = {
     name: 'Brian',
 };
 console.log(`User:`, user1); // User: { id: 1, name: 'Brian' }
+const add = (x, y) => {
+    return x + y;
+};
+console.log(add(4, 5)); // 9
+const subtract = (x, y) => {
+    return x - y;
+};
+console.log(subtract(5, 3)); // 2
+// const add: MathFunc = (x: number, y: string): number => x+y;
+// this will return an error because the y parameter is a string and not a number as its interface
