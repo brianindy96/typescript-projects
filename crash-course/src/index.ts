@@ -187,3 +187,20 @@ console.log(john);  // Person { id: 3, name: 'John' }
 // now we can access the id and name as follows
 // console.log(brian.register()); // Brian is now registered
 // console.log(brian.id); // Error, because id is modified to private
+
+// SUBCLASS
+
+class Employee extends Person {
+    position: string
+
+    constructor(id: number, name: string, position: string){
+        super(id, name);    // super calls the constructor of the parent class, which is Person
+        this.position = position;
+    }
+    
+}
+
+const emp = new Employee(3, 'Shawn', 'Developer');
+
+console.log(emp);   // Employee { id: 3, name: 'Shawn', position: 'Developer' }
+console.log(emp.register());    // Shawn is now registered
