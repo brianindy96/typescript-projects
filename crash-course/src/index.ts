@@ -110,3 +110,19 @@ function log(message: string | number): void {
 // log(true); // Error
 // log("Hello"); // Hello
 // log(2); // 2
+
+
+
+interface UserInterface {
+    readonly id: number
+    name: string
+    // age? gives that age is not required and no error in child
+    age?: number
+}
+
+const user1: UserInterface = {
+    id: 1,
+    name: 'Brian',
+}
+
+console.log(`User:`, user1);    // User: { id: 1, name: 'Brian' }

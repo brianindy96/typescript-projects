@@ -61,3 +61,22 @@ const user = {
     reverse: true,
 };
 // Type Assertion
+let cid = 1;
+// let customerId = <number>cid;
+// let customerId = cid as number;
+// Function
+function addNum(x, y) {
+    return x + y;
+}
+// console.log(addNum(1, '2')); // Error
+console.log(addNum(1, 2)); // 3
+// Void
+//void is used where there is no data. For example, if a function does not return any value then you can specify void as return type.
+function log(message) {
+    console.log(message);
+}
+const user1 = {
+    id: 1,
+    name: 'Brian',
+};
+console.log(`User:`, user1); // User: { id: 1, name: 'Brian' }
