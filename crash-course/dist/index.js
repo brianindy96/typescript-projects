@@ -88,8 +88,6 @@ const subtract = (x, y) => {
     return x - y;
 };
 console.log(subtract(5, 3)); // 2
-// const add: MathFunc = (x: number, y: string): number => x+y;
-// this will return an error because the y parameter is a string and not a number as its interface
 // Classes with Data Modifiers
 // These classes are public by default
 // There are public, private, and protected modifiers
@@ -100,6 +98,7 @@ class Person {
     }
     register() {
         // because the name was set to private, it can only be accessed within the class
+        // return 1; // this returns an error
         return `${this.name} is now registered`;
     }
 }
@@ -108,5 +107,5 @@ console.log(typeof (brian)); // object => Person { id: 1, name: 'Brian' }
 const john = new Person(3, 'John');
 console.log(john); // Person { id: 3, name: 'John' }
 // now we can access the id and name as follows
-console.log(brian.register()); // Brian is now registered
+// console.log(brian.register()); // Brian is now registered
 // console.log(brian.id); // Error, because id is modified to private
