@@ -119,3 +119,26 @@ class Employee extends Person {
 const emp = new Employee(3, 'Shawn', 'Developer');
 console.log(emp); // Employee { id: 3, name: 'Shawn', position: 'Developer' }
 console.log(emp.register()); // Shawn is now registered
+// GENERICS
+// any
+// this function will return an array of any type
+// function getArray(items: any[]): any[]{
+//     return new Array().concat(items);
+// }
+// // specify the type of the array here instead
+// let numArray = getArray([1,2,3,4]);
+// let strArray = getArray(['brad', 'john', 'jill']);
+// numArray.push('hello'); // no error
+// We somehow want the number arrays to only have numbers
+// and strings arrays to only have strings
+// // this function will return an array of any type
+// T is a generic type
+function getArray(items) {
+    return new Array().concat(items);
+}
+// specify the type of the array here instead
+let numArray = getArray([1, 2, 3, 4]);
+let strArray = getArray(['brad', 'john', 'jill']);
+numArray.push(7); // no error
+console.log(numArray); // [ 1, 2, 3, 4, 7 ]
+// numArray.push("Hello"); // Error because we specified that the array should only have numbers
