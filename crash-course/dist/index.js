@@ -90,3 +90,14 @@ const subtract = (x, y) => {
 console.log(subtract(5, 3)); // 2
 // const add: MathFunc = (x: number, y: string): number => x+y;
 // this will return an error because the y parameter is a string and not a number as its interface
+// Classes
+class Person {
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+}
+const brian = new Person(1, 'Brian');
+console.log(typeof (brian)); // object => Person { id: 1, name: 'Brian' }
+const john = new Person(3, 'John');
+console.log(john); // Person { id: 3, name: 'John' }
