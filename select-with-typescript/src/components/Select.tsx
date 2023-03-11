@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import styles from "./select.module.css"
 
 export type SelectOption = {
@@ -61,7 +61,6 @@ const Select = ({ multiple, options, value, onChange } : SelectProps) => {
   useEffect(() => {
     if(showOptions) setHighlightedIndex(0);
   }, [showOptions])
-
 
   return (
     <div 
