@@ -36,7 +36,6 @@ const Select = ({ multiple, options, value, onChange } : SelectProps) => {
   const clearOptions = () => {
     multiple ? onChange([]) : onChange(undefined)
     // clears the values in onChange
-    onChange(undefined)
   }
 
   // select option choice as value
