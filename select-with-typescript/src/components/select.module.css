@@ -72,3 +72,17 @@
     /* when class show is toggled, the options displays in block */
     display: block;
 }
+
+.option{
+    padding: .25em .5em;
+    cursor: pointer;
+}
+
+.option.highlighted{
+    background-color: hsl(200, 100%, 50%);
+    color: white;
+}
+
+.option.selected{
+    background-color: hsl(200, 100%, 70%);
+}
