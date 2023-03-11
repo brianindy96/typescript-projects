@@ -20,7 +20,8 @@ type SelectProps = {
 const Select = ({ options, value, onChange } : SelectProps) => {
   return (
     <div tabIndex={0} className={styles.container}>
-        <span className={styles.value}>Value</span>
+      {/* value here doesn't show label if we don't have one */}
+        <span className={styles.value}>{value?.label}</span>
         <button className={styles["close-btn"]}>&times;</button>
         <div className={styles.divider}></div>
         <div className={styles.caret}></div>

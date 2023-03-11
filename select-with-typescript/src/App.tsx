@@ -1,5 +1,6 @@
 import './App.css'
 import Select from './components/Select'
+import { useState } from 'react';
 
 function App() {
 
@@ -12,9 +13,14 @@ function App() {
     { label: "Reggae", value: 6},
   ];
 
+  // value here can be any of the options, or undefined, when no value is given yet
+  const [value, setValue] = useState<typeof options[0] | undefined >(options[0]);
+
+  
+
   return (
     <div className="App">
-      <Select options={options} />
+      <Select options={options} value={value} />
     </div>
   )
 }
