@@ -27,7 +27,8 @@ const Select = ({ options, value, onChange } : SelectProps) => {
     tabIndex={0} 
     onClick={() => setShowOptions(prev => !prev)}
     className={styles.container}
-    
+    // when i click anywhere else other than the div, it will close the div
+    onBlur={() => setShowOptions(false)}
     
     >
       {/* value here doesn't show label if we don't have one */}
