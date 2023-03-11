@@ -1,3 +1,4 @@
+import { useState } from "react"
 import styles from "./select.module.css"
 
 type SelectOption = {
@@ -18,6 +19,9 @@ type SelectProps = {
 
 
 const Select = ({ options, value, onChange } : SelectProps) => {
+
+  // we only want the options to be shown, if the select is opened
+  const [showOptions, setShowOptions] = useState(false)
   return (
     <div tabIndex={0} className={styles.container}>
       {/* value here doesn't show label if we don't have one */}
@@ -25,7 +29,7 @@ const Select = ({ options, value, onChange } : SelectProps) => {
         <button className={styles["close-btn"]}>&times;</button>
         <div className={styles.divider}></div>
         <div className={styles.caret}></div>
-        <ul className={`${styles.options} ${styles.show}`}>
+        <ul className={`${styles.options} ${showOptions ? styles.show : ""}`}>
           {options.map((option) => (
             <li key={option.label} className={styles.option}>
                 {option.label}
