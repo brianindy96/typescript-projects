@@ -28,6 +28,11 @@ const Select = ({ options, value, onChange } : SelectProps) => {
     onChange(undefined)
   }
 
+  // select option choice as value
+  const selectOption = (option: SelectOption) => {
+    onChange(option);
+  }
+
   return (
     <div 
     tabIndex={0} 
@@ -51,7 +56,15 @@ const Select = ({ options, value, onChange } : SelectProps) => {
         <div className={styles.caret}></div>
         <ul className={`${styles.options} ${showOptions ? styles.show : ""}`}>
           {options.map((option) => (
-            <li key={option.label} className={styles.option}>
+            <li 
+            key={option.label} 
+            onClick={e => {
+              e.stopPropagation();
+              selectOption(option);
+              setShowOptions(false);
+            }}
+            className={styles.option}
+            >
                 {option.label}
             </li>
           ))}
