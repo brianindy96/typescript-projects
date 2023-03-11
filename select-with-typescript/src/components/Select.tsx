@@ -23,7 +23,13 @@ const Select = ({ options, value, onChange } : SelectProps) => {
   // we only want the options to be shown, if the select is opened
   const [showOptions, setShowOptions] = useState(false)
   return (
-    <div tabIndex={0} className={styles.container}>
+    <div 
+    tabIndex={0} 
+    onClick={() => setShowOptions(prev => !prev)}
+    className={styles.container}
+    
+    
+    >
       {/* value here doesn't show label if we don't have one */}
         <span className={styles.value}>{value?.label}</span>
         <button className={styles["close-btn"]}>&times;</button>
