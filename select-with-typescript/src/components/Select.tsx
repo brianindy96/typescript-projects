@@ -6,37 +6,56 @@ type SelectOption = {
   value: string | number
 }
 
-type SelectProps = {
-  // options has to be an array of objects with label and value properties as specified in Select Option
-  options: SelectOption[] 
+type MultiSelectProps = {
+  multiple: true
+  value: SelectOption[]
+  onChange: (value: SelectOption[]) => void
+}
+
+type SingleSelectProps = {
+  multiple?: false
   // value has to be an object with label and value properties as specified in Select Option; value is optional
   value?: SelectOption
-
   // onChange takes in a value based on SelectOption type, or it is undefined
   onChange: (value: SelectOption | undefined) => void
   //  The function does not return anything (i.e., it has a return type of "void"). The purpose of this function is to handle changes to the selected option in the component. 
 }
 
+type SelectProps = {
+  // options has to be an array of objects with label and value properties as specified in Select Option
+  options: SelectOption[] 
+} & (SingleSelectProps | MultiSelectProps)
 
-const Select = ({ options, value, onChange } : SelectProps) => {
+
+const Select = ({ multiple, options, value, onChange } : SelectProps) => {
 
   // we only want the options to be shown, if the select is opened
   const [showOptions, setShowOptions] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(0);
 
   const clearOptions = () => {
+    multiple ? onChange([]) : onChange(undefined)
     // clears the values in onChange
     onChange(undefined)
   }
 
   // select option choice as value
   const selectOption = (option: SelectOption) => {
-    if (option !== value) onChange(option);
+    if (multiple) {
+      // case where we have avoid option duplication
+      if(value.includes(option)) {
+        onChange(value.filter(o => o !== option))
+      } else{
+        onChange([...value, option])
+      }
+    } else {
+      if (option !== value) onChange(option)
+    }
   }
 
   // isOptionSelected
   const isOptionSelected = (option: SelectOption) => {
-    return option === value;
+    return multiple ? value.includes(option) : option === value
   }
 
   // setsHighlightedIndex to default 0 everytime div is left and entered again
@@ -54,15 +73,17 @@ const Select = ({ options, value, onChange } : SelectProps) => {
     onBlur={() => setShowOptions(false)}
     >
       {/* value here doesn't show label if we don't have one */}
-        <span className={styles.value}>{value?.label}</span>
-        <button 
-        onClick={e => {
-          // this will prevent the event from bubbling up to the parent element
-          e.stopPropagation()
-          // this will set the value to undefined
-          clearOptions();
-        }}
-        className={styles["close-btn"]}>&times;</button>
+        <span className={styles.value}>{multiple ? value.map(v => (
+          <button key={v.value} onClick={e => {
+            e.stopPropagation();
+            onChange(value.filter(o => o !== v))
+          }}
+          className={styles["option-badge"]}
+          >{v.label}
+          <span className={styles["remove-btn"]}>&times;</span>
+          </button>
+        )) : value?.label}</span>
+       <button className={styles["close-btn"]}>&times;</button>
         <div className={styles.divider}></div>
         <div className={styles.caret}></div>
         <ul className={`${styles.options} ${showOptions ? styles.show : ""}`}>
