@@ -22,6 +22,7 @@ const Select = ({ options, value, onChange } : SelectProps) => {
 
   // we only want the options to be shown, if the select is opened
   const [showOptions, setShowOptions] = useState(false)
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
 
   const clearOptions = () => {
     // clears the values in onChange
@@ -33,6 +34,12 @@ const Select = ({ options, value, onChange } : SelectProps) => {
     onChange(option);
   }
 
+  // isOptionSelected
+  const isOptionSelected = (option: SelectOption) => {
+    return option === value;
+  }
+
+
   return (
     <div 
     tabIndex={0} 
@@ -40,7 +47,6 @@ const Select = ({ options, value, onChange } : SelectProps) => {
     className={styles.container}
     // when i click anywhere else other than the div, it will close the div
     onBlur={() => setShowOptions(false)}
-    
     >
       {/* value here doesn't show label if we don't have one */}
         <span className={styles.value}>{value?.label}</span>
@@ -55,15 +61,20 @@ const Select = ({ options, value, onChange } : SelectProps) => {
         <div className={styles.divider}></div>
         <div className={styles.caret}></div>
         <ul className={`${styles.options} ${showOptions ? styles.show : ""}`}>
-          {options.map((option) => (
+          {options.map((option, index) => (
             <li 
             key={option.label} 
             onClick={e => {
               e.stopPropagation();
               selectOption(option);
               setShowOptions(false);
+              console.log(option.value);
             }}
-            className={styles.option}
+            onMouseEnter={() => {
+              console.log('onMouseEnter fired');
+              console.log(option.value);
+              setHighlightedIndex(index)}}
+            className={`${styles.option} ${isOptionSelected(option) ? styles.selected : ""} ${highlightedIndex === index ? styles.highlighted : ""}`}
             >
                 {option.label}
             </li>
