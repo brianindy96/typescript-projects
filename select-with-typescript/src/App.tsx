@@ -21,7 +21,9 @@ function App() {
 
   return (
     <div className="App">
+      {/* Multiple Selects */}
       <Select multiple options={options} value={value1} onChange={o => setValue1(o)} />
+      {/* Single Select */}
       <Select options={options} value={value2} onChange={o => setValue2(o)} />
     </div>
   )
