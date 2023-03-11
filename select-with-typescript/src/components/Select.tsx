@@ -22,6 +22,12 @@ const Select = ({ options, value, onChange } : SelectProps) => {
 
   // we only want the options to be shown, if the select is opened
   const [showOptions, setShowOptions] = useState(false)
+
+  const clearOptions = () => {
+    // clears the values in onChange
+    onChange(undefined)
+  }
+
   return (
     <div 
     tabIndex={0} 
@@ -33,7 +39,14 @@ const Select = ({ options, value, onChange } : SelectProps) => {
     >
       {/* value here doesn't show label if we don't have one */}
         <span className={styles.value}>{value?.label}</span>
-        <button className={styles["close-btn"]}>&times;</button>
+        <button 
+        onClick={e => {
+          // this will prevent the event from bubbling up to the parent element
+          e.stopPropagation()
+          // this will set the value to undefined
+          clearOptions();
+        }}
+        className={styles["close-btn"]}>&times;</button>
         <div className={styles.divider}></div>
         <div className={styles.caret}></div>
         <ul className={`${styles.options} ${showOptions ? styles.show : ""}`}>

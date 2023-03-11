@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <Select options={options} value={value} />
+      <Select options={options} value={value} onChange={o => setValue(o)} />
     </div>
   )
 }
