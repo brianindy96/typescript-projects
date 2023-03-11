@@ -1,3 +1,74 @@
 .container{
-    
+    position: relative;
+    min-height: 1.5em;
+    width: 20em;
+    border: .05em solid #777;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5em;
+    padding: .5em;
+    border-radius: .25em;
+    outline: none;
+}
+
+.container:focus{
+    border-color: hsl(200, 100%, 50%);
+}
+
+.value{
+    flex-grow: 1;
+}
+
+.close-btn{
+    background: none;
+    color: #777;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1.25em;
+}
+
+.close-btn:hover,
+.close-btn:focus{
+    color: #333;
+}
+
+.divider{
+    background-color: #777;
+    align-self: stretch;
+    width: .05em;
+}
+
+.caret{
+    /* trasnlate caret down Y-direction 25% */
+    translate: 0 25%;
+    border: .25em solid transparent;
+    border-top-color: #777;
+}
+
+.options{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    /* when class show is not toggled, the options doesn't display */
+    display: none;
+    list-style: none;
+    max-height: 15em;
+    /* after max-height, it will enable scroll */
+    overflow-y: auto;
+    border: .05em solid #777;
+    border-radius: .25em;
+    width: 100%;
+    left: 0;
+    /* top 100% is full div + .25em gap */
+    top: calc(100% + .25em);
+    z-index: 100;
+    background-color: white;
+}
+
+.options.show{
+    /* when class show is toggled, the options displays in block */
+    display: block;
 }
