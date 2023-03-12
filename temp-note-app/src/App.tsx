@@ -2,6 +2,7 @@ import './App.css'
 import { Routes, Route, Navigate } from "react-router-dom"
 import { Container } from 'react-bootstrap'
 import NewNote from './pages/NewNote'
+import { useLocalStorage } from "./hooks/useLocalStorage"
 
 export type Note = {
   id: string
