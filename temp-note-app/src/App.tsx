@@ -4,6 +4,8 @@ import { Container } from 'react-bootstrap'
 import NewNote from './pages/NewNote'
 import { useLocalStorage } from "./hooks/useLocalStorage"
 import { useMemo } from "react"
+import { v4 as uuidV4 } from "uuid"
+
 export type Note = {
   id: string
 } & NoteData
@@ -45,11 +47,17 @@ function App() {
       })
   }, [notes, tags])
 
+  function onCreateNote({ tags, ...data}: NoteData){
+    setNotes(prevNotes => {
+      return [...prevNotes, { ...data, id: uuidV4(), tagIds: tags.map(tag => tag.id)}]
+    })
+  }
+
   return (
     <Container className='my-4'>
       <Routes>
         <Route path="/" element={<div>Home</div>} />
-        <Route path="/new" element={<NewNote />} />
+        <Route path="/new" element={<NewNote onSubmit={onCreateNote} />} />
         <Route path="/:id">
           <Route index element={<div>Show</div>} />
           <Route path="edit" element={<div>Edit</div>} />
