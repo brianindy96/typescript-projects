@@ -11,14 +11,15 @@ type NoteFormProps = {
     onSubmit: (data: NoteData) => void
     onAddTag: (tag: Tag) => void;
     availableTags: Tag[]
-}
+}   // showing that the props are optional in this case Not true for CreateForm but true for EditForm
+    & Partial<NoteData>
 
-const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
+const NoteForm = ({ onSubmit, onAddTag, availableTags, title="", markdown="", tags=[] }: NoteFormProps) => {
 
     // states to store info from title, and textarea
     const titleRef = useRef<HTMLInputElement>(null);
     const markDownRef = useRef<HTMLTextAreaElement>(null);
-    const [selectedTags, setSelectedTags] = useState<Tag[]>([])
+    const [selectedTags, setSelectedTags] = useState<Tag[]>(tags)
     const navigate = useNavigate();
 
     const handleSubmit = (e: FormEvent) => {
@@ -42,7 +43,7 @@ const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
                 <Col>
                     <Form.Group controlId="title">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control required ref={titleRef} />
+                    <Form.Control required ref={titleRef} defaultValue={title} />
                     </Form.Group>
                 </Col>
                 <Col>
@@ -74,7 +75,7 @@ const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
                 <Col>
                     <Form.Group controlId="markdown">
                         <Form.Label>Body</Form.Label>
-                        <Form.Control ref={markDownRef} required as="textarea" rows={15} />
+                        <Form.Control ref={markDownRef} defaultValue={markdown} required as="textarea" rows={15} />
                     </Form.Group>
                     <Stack direction="horizontal" gap={2} className="justify-content-end mt-2">
                         <Button variant="primary" type="submit">Save</Button>
