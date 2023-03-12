@@ -52,12 +52,20 @@ function App() {
       return [...prevNotes, { ...data, id: uuidV4(), tagIds: tags.map(tag => tag.id)}]
     })
   }
+  
+  function addTag(tag: Tag){
+    setTags(prev => [...prev, tag]);
+  }
 
   return (
     <Container className='my-4'>
       <Routes>
         <Route path="/" element={<div>Home</div>} />
-        <Route path="/new" element={<NewNote onSubmit={onCreateNote} />} />
+        <Route path="/new" element={<NewNote 
+        onSubmit={onCreateNote}
+        onAddTag={addTag}
+        availableTags={tags}
+        />} />
         <Route path="/:id">
           <Route index element={<div>Show</div>} />
           <Route path="edit" element={<div>Edit</div>} />
