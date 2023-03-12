@@ -3,7 +3,40 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import { Container } from 'react-bootstrap'
 import NewNote from './pages/NewNote'
 
+export type Note = {
+  id: string
+} & NoteData
+
+export type RawNote = {
+  id: string
+}
+
+export type NoteData = {
+  title: string
+  markdown: string
+  tags: Tag[]
+}
+
+export type RawNoteData = {
+  title: string
+  markdown: string
+  tagIds: string[]
+}
+
+
+export type Tag = {
+  id: string
+  label: string
+}
+
+
+
+
 function App() {
+
+  // states
+  const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
+  const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
 
   return (
     <Container className='my-4'>
