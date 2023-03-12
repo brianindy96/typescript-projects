@@ -8,15 +8,19 @@ import NoteCard from "./Notecard"
 export type NoteListProps = {
     availableTags: Tag[]
     notes: Note[]
+    deleteTag: (id: string) => void
+    updateTag: (id: string, label: string) => void
 }
 
 export type EditTagsModalProps = {
     availableTags: Tag[]
     show: boolean
     handleClose: () => void
+    deleteTag: (id: string) => void
+    updateTag: (id: string, label: string) => void
 }
 
-const NoteList = ({ availableTags, notes }: NoteListProps ) => {
+const NoteList = ({ availableTags, notes, updateTag, deleteTag }: NoteListProps ) => {
 
     const [selectedTags, setSelectedTags] = useState<Tag[]>([])
     const [title, setTitle] = useState("");
@@ -87,12 +91,18 @@ const NoteList = ({ availableTags, notes }: NoteListProps ) => {
                 </Col>
             ))}
         </Row>
-        <EditTagsModal show={editTagsModalIsOpen} handleClose={() => setEditTagsModalIsOpen(false)} availableTags={availableTags}  />
+        <EditTagsModal 
+        show={editTagsModalIsOpen} 
+        handleClose={() => setEditTagsModalIsOpen(false)}
+        availableTags={availableTags}
+        updateTag={updateTag}
+        deleteTag={deleteTag}
+        />
     </>
   )
 }
 
-function EditTagsModal({ availableTags, show, handleClose }: EditTagsModalProps) { 
+function EditTagsModal({ availableTags, show, handleClose, deleteTag, updateTag }: EditTagsModalProps) { 
     return (
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -104,10 +114,17 @@ function EditTagsModal({ availableTags, show, handleClose }: EditTagsModalProps)
                     {availableTags.map(tag => (
                         <Row key={tag.id}>
                             <Col>
-                                <Form.Control type="text" value={tag.label}></Form.Control>
+                                <Form.Control 
+                                type="text" 
+                                value={tag.label}
+                                onChange={e => updateTag(tag.id, e.target.value)}
+                                ></Form.Control>
                             </Col>
                             <Col xs="auto">
-                                <Button variant="outline-danger">
+                                <Button 
+                                variant="outline-danger"
+                                onClick={() => deleteTag(tag.id)}
+                                >
                                     &times;
                                 </Button>
                             </Col>
